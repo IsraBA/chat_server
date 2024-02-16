@@ -37,6 +37,7 @@ let messages = [];
 io.on("connection", (socket) => {
     console.log(`user ${socket.id} connected`);
     const username = socket.handshake.query.myName ? socket.handshake.query.myName : "anonymous";
+    const myColor = socket.handshake.query.myColor ? socket.handshake.query.myColor : "black";
 
     // messages שלח למשתמש את כל ההודעות הקיימות במערך
     socket.emit("allMessages", messages);
@@ -50,6 +51,7 @@ io.on("connection", (socket) => {
         // socket.emit("message", message);
         const data = {
             username,
+            myColor,
             message,
             time: getIsraelTime()
         };
